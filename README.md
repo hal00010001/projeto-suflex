@@ -8,5 +8,6 @@ Run the command: npm install or yarn
 
 Express
 Typescript
-Eslint
+Eslint using Airbnb pattern
+Prettier
 PostgreSQL 13.4-R1 on Amazon AWS RDS
