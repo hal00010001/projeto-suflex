@@ -1,0 +1,25 @@
+version: "3.7"
+
+services: 
+  database_suflex:
+    image: postgres
+    container_name: database-suflex
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:      
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=suflex
+      - POSTGRES_DB=dbsuflex
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+    network_mode: host
+  app:
+    build: .
+    container_name: projeto-suflex
+    restart: always
+    ports:
+      - 3740:3740
+    volumes:
+      - .:/usr/app
+    network_mode: host

@@ -1,9 +1,12 @@
-import express from 'express';
+import express from "express";
+
+import { productsRoutes } from "./routes/products.routes";
+
+import "./infra/connection";
 
 const app = express();
 
-app.get('/', (request, response) => response.json(
-  { message: 'Hello World' },
-));
+app.use(express.json());
+app.use(productsRoutes);
 
-app.listen(3740);
+app.listen(3740, () => console.log("Server is running!"));
