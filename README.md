@@ -8,6 +8,11 @@ Run one of these commands:
 Run the following command inside the root directory:
 docker-compose up -d
 
+Run the following command to create the table in the database:
+yarn typeorm migration:run
+
+If you want to revert the last migration, run this command:
+yarn typeorm migration:revert
 
 # Used technologies in the project
 
@@ -18,4 +23,5 @@ Prettier
 ts-node-dev
 docker-compose
 PostgreSQL
+Multer
 

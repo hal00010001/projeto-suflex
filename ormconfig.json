@@ -4,5 +4,9 @@
     "host": "localhost",
     "username": "docker",
     "password": "suflex",
-    "database": "dbsuflex"
+    "database": "dbsuflex",
+    "migrations": ["./src/infra/migrations/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/infra/migrations"
+    }
 }
