@@ -1,9 +1,9 @@
 import { Router } from "express";
 import multer from "multer";
 
-import { createProductController } from "../modules/products/useCases/createProduct";
-import { importProductsController } from "../modules/products/useCases/importProducts";
-import { listProductsController } from "../modules/products/useCases/listProduct";
+import { CreateProductController } from "../modules/products/useCases/createProduct/CreateProductController";
+import { ImportProductsController } from "../modules/products/useCases/importProducts/ImportProductsController";
+import { ListProductsController } from "../modules/products/useCases/listProduct/ListProductsController";
 
 const productsRoutes = Router();
 
@@ -11,16 +11,18 @@ const upload = multer({
   dest: "./tmp",
 });
 
-productsRoutes.get("/", (request, response) => {
-  return listProductsController.handle(request, response);
-});
+const createProductController = new CreateProductController();
+const importProductsController = new ImportProductsController();
+const listProductsController = new ListProductsController();
 
-productsRoutes.post("/", (request, response) => {
-  return createProductController.handle(request, response);
-});
+productsRoutes.get("/", listProductsController.handle);
 
-productsRoutes.post("/import", upload.single("file"), (request, response) => {
-  return importProductsController.handle(request, response);
-});
+productsRoutes.post("/", createProductController.handle);
+
+productsRoutes.post(
+  "/import",
+  upload.single("file"),
+  importProductsController.handle
+);
 
 export { productsRoutes };

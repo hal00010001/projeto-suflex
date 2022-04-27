@@ -6,6 +6,9 @@
     "password": "suflex",
     "database": "dbsuflex",
     "migrations": ["./src/infra/migrations/*.ts"],
+    "entities": [
+        "./src/modules/**/model/*.ts"
+    ],
     "cli": {
         "migrationsDir": "./src/infra/migrations"
     }

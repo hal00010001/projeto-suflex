@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { CreateProductUseCase } from "./CreateProductUseCase";
 
 class CreateProductController {
-  constructor(private createProductUseCase: CreateProductUseCase) {}
-
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, expiration } = request.body;
-
-    this.createProductUseCase.execute({ name, expiration });
+    const createProductUseCase = container.resolve(CreateProductUseCase);
+    await createProductUseCase.execute({ name, expiration });
 
     return response.status(201).send();
   }

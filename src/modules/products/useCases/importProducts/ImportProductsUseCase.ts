@@ -1,5 +1,6 @@
 import { parse } from "csv-parse";
 import fs from "fs";
+import { inject, injectable } from "tsyringe";
 
 import { IProductsRepository } from "../../repositories/IProductsRepository";
 
@@ -8,8 +9,12 @@ interface IImportProduct {
   expiration: number;
 }
 
+@injectable()
 class ImportProductsUseCase {
-  constructor(private productsRepository: IProductsRepository) {}
+  constructor(
+    @inject("ProductsRepository")
+    private productsRepository: IProductsRepository
+  ) {}
 
   loadProducts(file: Express.Multer.File): Promise<IImportProduct[]> {
     return new Promise((resolve, reject) => {

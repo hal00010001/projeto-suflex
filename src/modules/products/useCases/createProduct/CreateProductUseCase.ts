@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { IProductsRepository } from "../../repositories/IProductsRepository";
 
 interface IRequest {
@@ -5,11 +7,15 @@ interface IRequest {
   expiration: number;
 }
 
+@injectable()
 class CreateProductUseCase {
-  constructor(private productsRepository: IProductsRepository) {}
+  constructor(
+    @inject("ProductsRepository")
+    private productsRepository: IProductsRepository
+  ) {}
 
-  execute({ name, expiration }: IRequest): void {
-    this.productsRepository.create({ name, expiration });
+  async execute({ name, expiration }: IRequest): Promise<void> {
+    await this.productsRepository.create({ name, expiration });
   }
 }
 

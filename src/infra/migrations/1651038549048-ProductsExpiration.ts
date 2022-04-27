@@ -16,7 +16,7 @@ export class ProductsExpiration1651038549048 implements MigrationInterface {
             type: "varchar",
           },
           {
-            name: "expires_in",
+            name: "expiration",
             type: "integer",
           },
           {
@@ -30,6 +30,6 @@ export class ProductsExpiration1651038549048 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("expiration");
+    await queryRunner.dropTable("products");
   }
 }

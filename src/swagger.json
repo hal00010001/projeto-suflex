@@ -1,0 +1,11 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Suflex Project Documentation",
+        "description": "This a test API",
+        "version": "1.0.0.",
+        "contact": {
+            "email": "hal0001@gmail.com"
+        }
+    }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { getRepository, Repository } from "typeorm";
 
 import { Product } from "../model/Product";
@@ -10,21 +11,23 @@ class ProductsRepository implements IProductsRepository {
   constructor() {
     this.repository = getRepository(Product);
   }
+
   async create({ name, expiration }: ICreateProductDTO): Promise<void> {
-    // const product = this.repository.create({ name, expiration });
-    // await this.repository.save(product);
-  }
-  findByExpirationDate(expiration: number): Promise<Product[]> {
-    const products = this.repository.find({
-      where: {
-        expires_in: expiration,
-      },
-    });
-    return products;
+    const product = this.repository.create({ name, expiration });
+    await this.repository.save(product);
   }
 
   async list(): Promise<Product[]> {
     const products = await this.repository.find();
+    return products;
+  }
+
+  async findByExpirationDate(expiration_days: number): Promise<Product[]> {
+    const products = await this.repository.find({
+      where: {
+        expiration: expiration_days,
+      },
+    });
     return products;
   }
 }

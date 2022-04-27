@@ -1,11 +1,17 @@
+import { inject, injectable } from "tsyringe";
+
 import { Product } from "../../model/Product";
 import { IProductsRepository } from "../../repositories/IProductsRepository";
 
+@injectable()
 class ListProductsUseCase {
-  constructor(private productsRepository: IProductsRepository) {}
+  constructor(
+    @inject("ProductsRepository")
+    private productsRepository: IProductsRepository
+  ) {}
 
-  execute(): Promise<Product[]> {
-    const products = this.productsRepository.list();
+  async execute(): Promise<Product[]> {
+    const products = await this.productsRepository.list();
     return products;
   }
 }
