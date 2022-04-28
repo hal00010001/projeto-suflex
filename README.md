@@ -24,14 +24,14 @@ The collection used in Insomnia is saved inside the directory /src/assets under 
 
 # Used technologies in this project
 
-Express
-Typescript
-Eslint using Airbnb pattern
-Prettier
-ts-node-dev
-docker-compose
-PostgreSQL
-TypeORM
-Multer
-Tsyringe
+Express / 
+Typescript / 
+Eslint using Airbnb pattern / 
+Prettier / 
+ts-node-dev / 
+docker-compose / 
+PostgreSQL / 
+TypeORM / 
+Multer / 
+Tsyringe / 
 
